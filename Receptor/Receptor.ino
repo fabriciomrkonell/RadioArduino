@@ -26,8 +26,6 @@ void loop(void)
     while (!done)
     {
       done = radio.read( joystick, sizeof(joystick) );
-      Serial.println(joystick[0]);
-      Serial.println(joystick[1]);
       tone(buzzer,1500);
     }
   }
