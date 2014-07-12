@@ -2,14 +2,13 @@
 #include "nRF24L01.h"
 #include "RF24.h"
 
-char movimentoDesignado;
-
 RF24 radio(9,10);
 
 const uint64_t pipe = 0xE8E8F0F0E1LL;
 int x = 0;
-int botao = 4;
+int botao = 3;
 int flag = 0;
+int sensor = 8;
 
 
 void setup(void)
@@ -22,17 +21,20 @@ void setup(void)
 
 void loop(void)
 {
-  flag = digitalRead(botao); //Flag recebe o valor do botao
-
+  flag = digitalRead(botao);
+  
+  
+  
   if(flag == 1){
     x = 1;
   }else{
     x = 0;
   }
   
-  char entrada[20];
-  sprintf(entrada,"y:%d;x:%d",x);
+  Serial.println(x);
   
+  char entrada[20];
+  sprintf(entrada,"y:%d;x:%d",x);  
   radio.write(&entrada, sizeof(unsigned char[20]));  
    
  }
