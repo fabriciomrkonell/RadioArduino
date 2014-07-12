@@ -2,7 +2,7 @@
 #include "nRF24L01.h"
 #include "RF24.h"
 
-int joystick[2];
+int joystick[1];
 
 const int buzzer = 8;
 
@@ -25,7 +25,8 @@ void loop(void)
     bool done = false;
     while (!done)
     {
-      done = radio.read( joystick, sizeof(joystick) );
+      done = radio.read( joystick, sizeof(joystick));
+      Serial.println(done);
       tone(buzzer,1500);
     }
   }
