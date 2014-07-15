@@ -22,9 +22,7 @@ void setup(void)
 void loop(void)
 {
   flag = digitalRead(botao);
-  
-  
-  
+ 
   if(flag == 1){
     x = 1;
   }else{

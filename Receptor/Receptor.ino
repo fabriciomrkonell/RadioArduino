@@ -3,11 +3,9 @@
 #include "RF24.h"
 
 int joystick[1];
-
-const int buzzer = 8;
-
 RF24 radio(9,10);
 const uint64_t pipe = 0xE8E8F0F0E1LL;
+const int rele = 7; 
 
 void setup(void)
 {
@@ -15,7 +13,7 @@ void setup(void)
   radio.begin();
   radio.openReadingPipe(1,pipe);
   radio.startListening();
-  pinMode(buzzer,OUTPUT);
+  pinMode(rele, OUTPUT);
 }
 
 void loop(void)
@@ -26,15 +24,13 @@ void loop(void)
     while (!done)
     {
       done = radio.read( joystick, sizeof(joystick));
-      Serial.println(done);
-      tone(buzzer,1500);
+      digitalWrite(rele, HIGH);      
     }
   }
   else
   {
-    tone(buzzer,0);
+    digitalWrite(sinalparaorele, LOW);
     Serial.println("Rádio não disponível");
   }
   delay(1000);
 }
-
