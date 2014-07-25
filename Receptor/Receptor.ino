@@ -29,8 +29,8 @@ void loop(void)
   }
   else
   {
-    digitalWrite(sinalparaorele, LOW);
+    digitalWrite(rele, LOW);
     Serial.println("Rádio não disponível");
   }
-  delay(1000);
+  delay(100);
 }
